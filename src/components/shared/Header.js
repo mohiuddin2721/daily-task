@@ -20,7 +20,7 @@ const Header = () => {
                         {navbarItems}
                     </ul>
                 </div>
-                <a class="btn btn-ghost normal-case text-xl">Daily Task</a>
+                <a class="btn btn-ghost normal-case text-xl">My Daily Task</a>
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal p-0">

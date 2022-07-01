@@ -9,7 +9,9 @@ const ToDo = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const current = new Date();
 
-    const { data: task, isLoading, refetch } = useQuery('task', () => fetch('http://localhost:5000/task').then(res => res.json()));
+    const { data: task, isLoading, refetch } = useQuery('task', () => 
+        fetch('http://localhost:5000/task')
+        .then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>

@@ -10,7 +10,7 @@ const EditeTask = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const {data: task, isLoading, refetch} = useQuery('/task/:id', () => 
-    fetch(`http://localhost:5000/task/${id}`)
+    fetch(`https://metric-minister-57120.herokuapp.com/task/${id}`)
     .then(res => res.json()));
 
     // console.log(task);
@@ -24,7 +24,7 @@ const EditeTask = () => {
             title: data.title,
             description: data.description
         }
-        const url = `http://localhost:5000/task/${id}`;
+        const url = `https://metric-minister-57120.herokuapp.com/task/${id}`;
         fetch(url, {
             method: 'PATCH',
             headers: {

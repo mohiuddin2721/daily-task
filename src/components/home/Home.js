@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Loading from './Loading';
 
 const Home = () => {
-    const { data: task, isLoading } = useQuery('task', () => fetch('http://localhost:5000/task').then(res => res.json()));
+    const { data: task, isLoading } = useQuery('task', () => fetch('https://metric-minister-57120.herokuapp.com/task').then(res => res.json()));
     
     if(isLoading){
         return <Loading></Loading>

@@ -5,14 +5,14 @@ import Loading from './Loading';
 
 const CompletedTasks = () => {
 
-    const { data: task, isLoading } = useQuery('task', () => fetch('http://localhost:5000/task').then(res => res.json()));
+    const { data: task, isLoading } = useQuery('task', () => fetch('https://metric-minister-57120.herokuapp.com/task').then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>
     }
 
     return (
-        <div className='h-screen'>
+        <div className='min-h-screen'>
 
             <div className='w-3/4 mx-auto'>
                 <h1 className='font-bold text-purple-600 text-2xl mt-4'>All Completed Task:</h1>

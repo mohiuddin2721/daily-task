@@ -10,7 +10,7 @@ const ToDo = () => {
     const current = new Date();
 
     const { data: task, isLoading, refetch } = useQuery('task', () => 
-        fetch('http://localhost:5000/task')
+        fetch('https://metric-minister-57120.herokuapp.com/task')
         .then(res => res.json()));
 
     if (isLoading) {
@@ -25,7 +25,7 @@ const ToDo = () => {
             completed: false
         }
         // console.log(task);
-        fetch('http://localhost:5000/task', {
+        fetch('https://metric-minister-57120.herokuapp.com/task', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -49,7 +49,7 @@ const ToDo = () => {
             date: date,
             completed: true
         }
-        fetch(`http://localhost:5000/task/${id}`, {
+        fetch(`https://metric-minister-57120.herokuapp.com/task/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

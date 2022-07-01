@@ -2,16 +2,18 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Loading from './Loading';
+import { useParams } from 'react-router-dom';
+import SingleTask from './SingleTask';
 
 const ToDo = () => {
+    const { id } = useParams();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const current = new Date();
-    
+
     const { data: task, isLoading, refetch } = useQuery('task', () => fetch('http://localhost:5000/task').then(res => res.json()));
 
-    if(isLoading) {
+    if (isLoading) {
         return <Loading></Loading>
     }
     const onSubmit = (data, e) => {
@@ -38,6 +40,34 @@ const ToDo = () => {
                 refetch();
             })
     };
+
+    const completeButton = (id, data) => {
+        const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+        const task = {
+            title: data.title,
+            description: data.description,
+            date: date,
+            completed: true
+        }
+        fetch(`http://localhost:5000/task/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(task)
+        })
+        .then(res => res.json())
+        .then(data => {
+            toast.success('Wow!!! Your task Successfully completed')
+            // console.log(date);
+            refetch();
+        })
+        
+    }
+
+    const editedButton = (id, data) => {
+
+    }
 
     return (
         <div className='min-h-screen'>
@@ -84,14 +114,12 @@ const ToDo = () => {
                 </div>
                 <div>
                     {
-                        task?.filter(t => t.completed === false).map(t => <div key={t._id}>
-                            <div className="card w-3/4 mx-auto rounded-lg bg-slate-800 hover:bg-slate-900 p-4 mb-2">
-                                <span className='text-sm text-blue-700 font-bold'>{t?.title}</span> 
-                                <span>{t?.description}</span>
-                                <span className='text-right mr-6 text-sm'>{t?.date}</span>
-                                <span><button><AiOutlineCheckCircle className='text-red-500'></AiOutlineCheckCircle></button></span>
-                            </div>
-                        </div>)
+                        task?.filter(t => t.completed === false).map(t => <SingleTask
+                            key={t._id}
+                            t={t}
+                            completeButton={completeButton}
+                            editedButton={editedButton}
+                        ></SingleTask>)
                     }
                 </div>
             </div>

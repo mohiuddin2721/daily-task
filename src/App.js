@@ -8,6 +8,7 @@ import Home from './components/home/Home';
 import CompletedTasks from './components/home/CompletedTasks';
 import ToDo from './components/home/ToDo';
 import Calendars from './components/home/Calendars';
+import EditeTask from './components/home/EditeTask';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='completedTasks' element={<CompletedTasks></CompletedTasks>}></Route>
         <Route path='toDo' element={<ToDo></ToDo>}></Route>
+        <Route path='editeTask/:id' element={<EditeTask></EditeTask>}></Route>
         <Route path='calender' element={<Calendars></Calendars>}></Route>
       </Routes>
       <Footer></Footer>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FaRegEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const SingleTask = ({ t, completeButton, editedButton }) => {
     return (
@@ -11,7 +12,7 @@ const SingleTask = ({ t, completeButton, editedButton }) => {
                 <span className='text-right mr-6 text-sm'>{t?.date}</span>
                 <span>
                     <button onClick={() => completeButton(t._id, t)}><AiOutlineCheckCircle className='text-red-500 mr-2 text-lg'></AiOutlineCheckCircle></button>
-                    <button onClick={() => editedButton(t._id, t)} className='text-green-500 ml-2 text-lg'><FaRegEdit></FaRegEdit></button>
+                    <Link to={`/editeTask/${t._id}`}><button className='text-green-500 ml-2 text-lg'><FaRegEdit></FaRegEdit></button></Link>
                 </span>
             </div>
         </div>

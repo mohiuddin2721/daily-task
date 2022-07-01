@@ -3,11 +3,9 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import Loading from './Loading';
-import { useParams } from 'react-router-dom';
 import SingleTask from './SingleTask';
 
 const ToDo = () => {
-    const { id } = useParams();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const current = new Date();
 
@@ -65,10 +63,6 @@ const ToDo = () => {
         
     }
 
-    const editedButton = (id, data) => {
-
-    }
-
     return (
         <div className='min-h-screen'>
             <h1 className='font-bold text-purple-600 text-2xl mt-4 ml-8'>Add Your daily tasks</h1>
@@ -118,7 +112,6 @@ const ToDo = () => {
                             key={t._id}
                             t={t}
                             completeButton={completeButton}
-                            editedButton={editedButton}
                         ></SingleTask>)
                     }
                 </div>
